@@ -5,7 +5,16 @@ const InfoComponent = {
     bindings: {},
     controller: class InfoController {
         constructor() {
+            const infoMessage = {
+                text: "My message text.",
+                code: "My message code."
+            };
 
+            this.infoMessage = infoMessage;
+        }
+
+        acceptTheMessage($event) {
+            console.log("this is accept the message method! event: ", $event);
         }
     }
 };

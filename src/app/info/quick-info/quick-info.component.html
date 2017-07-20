@@ -1,3 +1,8 @@
 <h4>
-    this is the quick info section!
+    Message text is: {{ $ctrl.infoMessage.text }}
 </h4>
+<h4>
+    Message code is: {{ $ctrl.infoMessage.code }}
+</h4>
+<button ng-click="$ctrl.doSomething({message: $ctrl.infoMessage})">Accept</button>
+<button ng-click="$ctrl.acceptTheMessage({$event: $ctrl.infoMessage})">Accept2</button>
