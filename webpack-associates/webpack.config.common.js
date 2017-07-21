@@ -10,6 +10,7 @@ const combineLoaders = require('webpack-combine-loaders');
 
 module.exports = function (options) {
     const jsLoaders = options.jsLoaders || combineLoaders([
+            { loader: 'ng-annotate-loader' }, // if you wanna use 'ng-annotate-loader' it needs to be "before" babel-loader.
             {
                 loader: "babel-loader",
                 query: {

@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 8088;
 module.exports = function (options) {
     const customizedCommonConfig = commonConfig({
         jsLoaders: combineLoaders([
+            { loader: 'ng-annotate-loader' },
             {
                 loader: "babel-loader",
                 query: {
