@@ -1,5 +1,5 @@
 <h3>
-    this is the info component!
+    Container (parent) Component: Info
 </h3>
 <quick-info info-message="$ctrl.infoMessage" accept-the-message="$ctrl.acceptTheMessage($event)"></quick-info>
 <!--this line says hey child component, you have to call the parent method like this: this.acceptTheMessage({$event: ...} or if you are in the template level: $ctrl.acceptTheMessage({$event: ...}, I mean you have to keep $event as the key of the object that you're sending if it was "abc" you had to send {abc: ...} as the argument. and if it was (abc, xyz) you had to send {abc: ..., xyx: ...}))-->

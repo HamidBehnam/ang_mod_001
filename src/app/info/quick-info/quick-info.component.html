@@ -1,8 +1,8 @@
 <h4>
-    Message text is: {{ $ctrl.infoMessage.text }}
+    Presentational Component* Data from parent component: {{ $ctrl.infoMessage.text }}
 </h4>
 <h4>
-    Message code is: {{ $ctrl.infoMessage.code }}
+    Presentational Component* Data from parent component: {{ $ctrl.infoMessage.code }}
 </h4>
-<button ng-click="$ctrl.doSomething({message: $ctrl.infoMessage})">Accept</button>
-<button ng-click="$ctrl.acceptTheMessage({$event: $ctrl.infoMessage})">Accept2</button>
+<button ng-click="$ctrl.doSomething({message: $ctrl.infoMessage})">Process and send it back to parent</button>
+<button ng-click="$ctrl.acceptTheMessage({$event: $ctrl.infoMessage})">Process and send it back to parent2</button>
