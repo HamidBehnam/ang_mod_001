@@ -7,10 +7,12 @@ import angular from 'angular';
 import RootComponent from './root.component.js'
 import InfoModule from "./info/info.module"
 import SummaryModule from "./summary/summary.module.js"
+import SharedModule from "./shared/shared.module.js"
 
 const RootModule = angular.module('root', [
     InfoModule.name,
-    SummaryModule.name
+    SummaryModule.name,
+    SharedModule.name
 ])
     .config(/* @ngInject */ ($locationProvider) => {
         $locationProvider.html5Mode(true);

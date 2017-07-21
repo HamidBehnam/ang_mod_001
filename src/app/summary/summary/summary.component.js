@@ -4,7 +4,10 @@ const SummaryComponent = {
     template: template,
     bindings: {},
     controller: class SummaryController {
-
+        /*@ngInject*/
+        constructor(AuthorService) {
+            this.AuthorService = AuthorService;
+        }
     }
 };
 
