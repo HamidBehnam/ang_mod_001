@@ -6,3 +6,9 @@
 </h4>
 <button ng-click="$ctrl.doSomething({message: $ctrl.infoMessage})">Process and send it back to parent</button>
 <button ng-click="$ctrl.acceptTheMessage({$event: $ctrl.infoMessage})">Process and send it back to parent2</button>
+<h4>here's the info title:</h4>
+<h4>
+    {{ $ctrl.infoTitle }}
+</h4>
+<button ng-click="$ctrl.addNameToTitle()">Add Name To Title</button>
+<button ng-click="$ctrl.addNumberToTitle()">Add Number To Title</button>

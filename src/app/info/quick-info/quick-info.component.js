@@ -1,4 +1,5 @@
 import template from "./quick-info.component.html"
+import {addNameToTitle, addNumberToTitle} from "../shared/actions";
 
 const QuickInfoComponent = {
     bindings: {
@@ -8,8 +9,10 @@ const QuickInfoComponent = {
     template: template,
     controller: class QuickInfoController {
         /* @ngInject */
-        constructor($timeout) {
+        constructor($timeout, $ngRedux) {
             this.$timeout = $timeout;
+            this.$ngRedux = $ngRedux;
+            this.unsubscribe = $ngRedux.connect(this.mapState, {})(this);
             console.log("Constructor: good place to pre initialize the class properties. this.something = 234;");
         }
 
@@ -29,6 +32,21 @@ const QuickInfoComponent = {
 
         $onDestroy() {
             console.log("$onDestroy: will be called at the moment that the controller is about to be destroyed. good place for removing the watchers and relasing the resources.");
+            this.unsubscribe();
+        }
+
+        mapState(state) {
+            return {
+                infoTitle: state.info.infoTitle
+            };
+        }
+
+        addNameToTitle() {
+            this.$ngRedux.dispatch(addNameToTitle());
+        }
+
+        addNumberToTitle() {
+            this.$ngRedux.dispatch(addNumberToTitle());
         }
     }
 };
