@@ -1,7 +1,5 @@
 export const fixSummaryCodeType = "fixSummaryCodeType";
 
-export const fixSummaryCode = function () {
-    return {
-        type: fixSummaryCodeType
-    };
-};
+export const fixSummaryCode = () => ({
+    type: fixSummaryCodeType
+});

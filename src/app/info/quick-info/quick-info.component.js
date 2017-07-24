@@ -1,9 +1,13 @@
 import template from "./quick-info.component.html"
-import {addNameToTitle, addNumberToTitle} from "../shared/redux/info.actions";
+import {
+    addNameToTitle,
+    addNumberToTitle,
+    replaceTheMessage
+} from "../shared/redux/info.actions";
 
 const QuickInfoComponent = {
     bindings: {
-        infoMessage: "<",
+        // infoMessage: "<",
         acceptTheMessage: "&"
     },
     template: template,
@@ -37,7 +41,8 @@ const QuickInfoComponent = {
 
         mapState(state) {
             return {
-                infoTitle: state.info.infoTitle
+                infoTitle: state.info.infoTitle,
+                infoMessage: state.info.infoMessage
             };
         }
 
@@ -47,6 +52,13 @@ const QuickInfoComponent = {
 
         addNumberToTitle() {
             this.$ngRedux.dispatch(addNumberToTitle());
+        }
+
+        replaceTheMessage () {
+            this.$ngRedux.dispatch(replaceTheMessage({
+                text: "TEXT",
+                code: "CODE"
+            }));
         }
     }
 };

@@ -2,15 +2,19 @@
 
 export const addNameToTitleType = "addNameToTitleType";
 export const addNumberToTitleType = "addNumberToTitleType";
+export const replaceTheMessageType = "replaceTheMessageType";
 
-export const addNameToTitle = () => {
-    return {
-        type: addNameToTitleType
-    };
-};
+export const addNameToTitle = () => ({
+    type: addNameToTitleType
+});
 
-export const addNumberToTitle = () => {
-  return {
-      type: addNumberToTitleType
-  };
-};
+export const addNumberToTitle = () => ({
+    type: addNumberToTitleType
+});
+
+export const replaceTheMessage = (message) => ({
+    type: replaceTheMessageType,
+    payload: {
+        message
+    }
+});
