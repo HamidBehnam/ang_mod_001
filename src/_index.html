@@ -9,5 +9,8 @@
 <root>
     <span class="loader">Loading...</span>
 </root>
+<% if (htmlWebpackPlugin.options.debug_redux === 'on') { %>
+<div id="devTools"></div>
+<% } %>
 </body>
 </html>

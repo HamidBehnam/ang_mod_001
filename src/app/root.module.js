@@ -5,7 +5,7 @@
 import '../less/style.less';
 import angular from 'angular';
 import ngRedux from "ng-redux";
-import infoReducer from "./info/shared/reducers";
+import rootReducer from "./root.reducer";
 import RootComponent from './root.component.js'
 import InfoModule from "./info/info.module"
 import SummaryModule from "./summary/summary.module.js"
@@ -17,13 +17,31 @@ const RootModule = angular.module('root', [
     SummaryModule.name,
     SharedModule.name
 ])
-    .config(/* @ngInject */ ($locationProvider, $ngReduxProvider) => {
-        $locationProvider.html5Mode(true);
-        $ngReduxProvider.createStoreWith({
-            info: infoReducer
-        });
-    })
     .component('root', RootComponent);
+
+if (process.env.DEBUG_REDUX === "on") {
+    //we don't need these imports in non-dev or non-debuggable environments.
+    const createLogger = require("redux-logger").createLogger;
+    const DevTools = require("./devTools").default;
+    const runDevTools = require("./devTools").runDevTools;
+
+    RootModule.config(/* @ngInject */ ($locationProvider, $ngReduxProvider) => {
+        $locationProvider.html5Mode(true);
+        $ngReduxProvider.createStoreWith(rootReducer, [createLogger()], [DevTools.instrument()]);
+    })
+        .run(runDevTools);
+} else {
+    RootModule.config(/* @ngInject */ ($locationProvider, $ngReduxProvider) => {
+        $locationProvider.html5Mode(true);
+        $ngReduxProvider.createStoreWith(rootReducer, []);
+    });
+}
+
+if (process.env.NODE_ENV === "dev") {
+    console.log("DEBUG_REDUX: ", process.env.DEBUG_REDUX);
+    console.log("NODE_ENV: ", process.env.NODE_ENV);
+    console.log("APP_VERSION: ", VERSION);
+}
 
 export default RootModule;
 

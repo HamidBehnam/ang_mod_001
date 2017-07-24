@@ -1,5 +1,5 @@
 import template from "./quick-info.component.html"
-import {addNameToTitle, addNumberToTitle} from "../shared/actions";
+import {addNameToTitle, addNumberToTitle} from "../shared/redux/info.actions";
 
 const QuickInfoComponent = {
     bindings: {

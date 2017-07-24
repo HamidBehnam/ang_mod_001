@@ -5,8 +5,20 @@ const SummaryComponent = {
     bindings: {},
     controller: class SummaryController {
         /*@ngInject*/
-        constructor(AuthorService) {
+        constructor(AuthorService, $ngRedux) {
             this.AuthorService = AuthorService;
+            this.$ngRedux = $ngRedux;
+            this.unsubscribe = $ngRedux.connect(this.mapState, {})(this);
+        }
+
+        $onDestroy() {
+            this.unsubscribe();
+        }
+
+        mapState(state) {
+            return {
+                summaryCode: state.summary.summaryCode
+            };
         }
     }
 };

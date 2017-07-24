@@ -61,15 +61,20 @@ module.exports = function (options) {
             ]
         },
         plugins: [
-            new webpack.DefinePlugin({
-                'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'dev')
+            new webpack.DefinePlugin({ // variables defined using webpack.DefinePlugin won't be available in the webpack.config files but they'll be available in the App itself (js, html)
+                "process.env": {
+                    "NODE_ENV": JSON.stringify(process.env.NODE_ENV || 'dev'),
+                    "DEBUG_REDUX": JSON.stringify(process.env.DEBUG_REDUX || 'on')
+                },
+                VERSION: JSON.stringify("0.1.0.0")
             }),
             new webpack.optimize.CommonsChunkPlugin({
                 name: ['common']
             }),
             new HtmlWebpackPlugin({
-                template: helpers.root("src", "_index.html"), // if you mention the filnename property, the final index.html will be generated in that directory, but this has a problem with webpack-dev-server, webpack-dev-server doesn't recognise it.
+                template: "!!ejs-loader!" + helpers.root("src", "_index.html"), // if you mention the filnename property, the final index.html will be generated in that directory, but this has a problem with webpack-dev-server, webpack-dev-server doesn't recognise it.
                 env: process.env.NODE_ENV || 'dev',
+                debug_redux: process.env.DEBUG_REDUX || 'on',
                 chunksSortMode: 'dependency',
                 hash: true
             })
