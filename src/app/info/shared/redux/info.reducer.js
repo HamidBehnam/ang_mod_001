@@ -3,7 +3,8 @@
 import {
     addNameToTitleType,
     addNumberToTitleType,
-    replaceTheMessageType
+    replaceTheMessageType,
+    addInfoProducerType
 } from "./info.actions";
 
 const initialState = {
@@ -11,7 +12,8 @@ const initialState = {
     infoMessage: {
         text: "default text",
         code: "default code"
-    }
+    },
+    infoProducers: ["Hamid", "John", "Smith"]
 };
 
 const infoReducer = function (state = initialState, {type: actionType, payload}) {
@@ -26,7 +28,11 @@ const infoReducer = function (state = initialState, {type: actionType, payload})
             });
         case replaceTheMessageType:
             return Object.assign({}, state, {
-                infoMessage: payload.message
+                infoMessage: Object.assign({}, state.infoMessage, payload.message)
+            });
+        case addInfoProducerType:
+            return Object.assign({}, state, {
+                infoProducers: [...state.infoProducers, payload.producer]
             });
         default:
             return state;

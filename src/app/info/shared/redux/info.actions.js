@@ -3,6 +3,7 @@
 export const addNameToTitleType = "addNameToTitleType";
 export const addNumberToTitleType = "addNumberToTitleType";
 export const replaceTheMessageType = "replaceTheMessageType";
+export const addInfoProducerType = "addInfoProducerType";
 
 export const addNameToTitle = () => ({
     type: addNameToTitleType
@@ -16,5 +17,12 @@ export const replaceTheMessage = (message) => ({
     type: replaceTheMessageType,
     payload: {
         message
+    }
+});
+
+export const addInfoProducer = (producer) => ({
+    type: addInfoProducerType,
+    payload: {
+        producer
     }
 });

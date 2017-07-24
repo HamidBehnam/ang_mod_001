@@ -10,6 +10,11 @@
 <h4>
     {{ $ctrl.infoTitle }}
 </h4>
+<h4>List of Info Producers:</h4>
+<h5 ng-repeat="producer in $ctrl.infoProducers track by $index">
+    {{producer}}
+</h5>
 <button ng-click="$ctrl.addNameToTitle()">Add Name To Title</button>
 <button ng-click="$ctrl.addNumberToTitle()">Add Number To Title</button>
 <button ng-click="$ctrl.replaceTheMessage()">Replace Info Message</button>
+<button ng-click="$ctrl.addInfoProducer()">Add Info Producer</button>

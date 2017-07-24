@@ -2,12 +2,13 @@ import template from "./quick-info.component.html"
 import {
     addNameToTitle,
     addNumberToTitle,
-    replaceTheMessage
+    replaceTheMessage,
+    addInfoProducer
 } from "../shared/redux/info.actions";
 
 const QuickInfoComponent = {
     bindings: {
-        // infoMessage: "<",
+        // infoMessage: "<", ...........by using redux, component can get its data from the redux' store.
         acceptTheMessage: "&"
     },
     template: template,
@@ -42,7 +43,8 @@ const QuickInfoComponent = {
         mapState(state) {
             return {
                 infoTitle: state.info.infoTitle,
-                infoMessage: state.info.infoMessage
+                infoMessage: state.info.infoMessage,
+                infoProducers: state.info.infoProducers
             };
         }
 
@@ -59,6 +61,10 @@ const QuickInfoComponent = {
                 text: "TEXT",
                 code: "CODE"
             }));
+        }
+
+        addInfoProducer() {
+            this.$ngRedux.dispatch(addInfoProducer("a new producer"));
         }
     }
 };
