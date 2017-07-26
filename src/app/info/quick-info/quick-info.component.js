@@ -5,6 +5,13 @@ import {
     replaceTheMessage,
     addInfoProducer
 } from "../shared/redux/info.actions";
+import {
+    getInfoState,
+    getInfoTitle,
+    getInfoTitleLength,
+    getInfoMessage,
+    getInfoProducers
+} from "../shared/redux/info.selectors"
 
 const QuickInfoComponent = {
     bindings: {
@@ -42,9 +49,11 @@ const QuickInfoComponent = {
 
         mapState(state) {
             return {
-                infoTitle: state.info.infoTitle,
-                infoMessage: state.info.infoMessage,
-                infoProducers: state.info.infoProducers
+                info: getInfoState(state),
+                infoTitle: getInfoTitle(state),
+                infoTitleLength: getInfoTitleLength(state),
+                infoMessage: getInfoMessage(state),
+                infoProducers: getInfoProducers(state)
             };
         }
 

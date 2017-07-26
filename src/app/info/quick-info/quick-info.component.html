@@ -14,7 +14,14 @@
 <h5 ng-repeat="producer in $ctrl.infoProducers track by $index">
     {{producer}}
 </h5>
+<div>
+    <span>Info title length: </span>
+    <span>{{$ctrl.infoTitleLength}}</span>
+</div>
 <button ng-click="$ctrl.addNameToTitle()">Add Name To Title</button>
 <button ng-click="$ctrl.addNumberToTitle()">Add Number To Title</button>
 <button ng-click="$ctrl.replaceTheMessage()">Replace Info Message</button>
 <button ng-click="$ctrl.addInfoProducer()">Add Info Producer</button>
+<pre>
+    {{$ctrl.info | json}}
+</pre>

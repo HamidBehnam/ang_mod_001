@@ -1,4 +1,5 @@
 import template from "./summary.component.html"
+import {getSummaryCode} from "../shared/redux/summary.selectors"
 
 const SummaryComponent = {
     template: template,
@@ -17,7 +18,7 @@ const SummaryComponent = {
 
         mapState(state) {
             return {
-                summaryCode: state.summary.summaryCode
+                summaryCode: getSummaryCode(state)
             };
         }
     }
