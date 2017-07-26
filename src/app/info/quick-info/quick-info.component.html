@@ -18,10 +18,10 @@
     <span>Info title length: </span>
     <span>{{$ctrl.infoTitleLength}}</span>
 </div>
-<button ng-click="$ctrl.addNameToTitle()">Add Name To Title</button>
-<button ng-click="$ctrl.addNumberToTitle()">Add Number To Title</button>
-<button ng-click="$ctrl.replaceTheMessage()">Replace Info Message</button>
-<button ng-click="$ctrl.addInfoProducer()">Add Info Producer</button>
+<button ng-click="$ctrl.callAddNameToTitle()">Add Name To Title</button>
+<button ng-click="$ctrl.callAddNumberToTitle()">Add Number To Title</button>
+<button ng-click="$ctrl.callReplaceTheMessage()">Replace Info Message</button>
+<button ng-click="$ctrl.callAddInfoProducer()">Add Info Producer</button>
 <pre>
     {{$ctrl.info | json}}
 </pre>

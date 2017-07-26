@@ -1,30 +1,23 @@
 import template from "./quick-info.component.html"
-import {
-    addNameToTitle,
-    addNumberToTitle,
-    replaceTheMessage,
-    addInfoProducer
-} from "../shared/redux/info.actions";
-import {
-    getInfoState,
-    getInfoTitle,
-    getInfoTitleLength,
-    getInfoMessage,
-    getInfoProducers
-} from "../shared/redux/info.selectors"
 
 const QuickInfoComponent = {
     bindings: {
-        // infoMessage: "<", ...........by using redux, component can get its data from the redux' store.
+        info: "<",
+        infoTitle: "<",
+        infoTitleLength: "<",
+        infoMessage: "<",
+        infoProducers: "<",
+        addNameToTitle: "&",
+        addNumberToTitle: "&",
+        replaceTheMessage: "&",
+        addInfoProducer: "&",
         acceptTheMessage: "&"
     },
     template: template,
     controller: class QuickInfoController {
-        /* @ngInject */
-        constructor($timeout, $ngRedux) {
+        /*@ngInject*/
+        constructor($timeout) {
             this.$timeout = $timeout;
-            this.$ngRedux = $ngRedux;
-            this.unsubscribe = $ngRedux.connect(this.mapState, {})(this);
             console.log("Constructor: good place to pre initialize the class properties. this.something = 234;");
         }
 
@@ -44,36 +37,29 @@ const QuickInfoComponent = {
 
         $onDestroy() {
             console.log("$onDestroy: will be called at the moment that the controller is about to be destroyed. good place for removing the watchers and relasing the resources.");
-            this.unsubscribe();
         }
 
-        mapState(state) {
-            return {
-                info: getInfoState(state),
-                infoTitle: getInfoTitle(state),
-                infoTitleLength: getInfoTitleLength(state),
-                infoMessage: getInfoMessage(state),
-                infoProducers: getInfoProducers(state)
-            };
+        callAddNameToTitle() {
+            this.addNameToTitle();
         }
 
-        addNameToTitle() {
-            this.$ngRedux.dispatch(addNameToTitle());
+        callAddNumberToTitle() {
+            this.addNumberToTitle();
         }
 
-        addNumberToTitle() {
-            this.$ngRedux.dispatch(addNumberToTitle());
+        callReplaceTheMessage () {
+            this.replaceTheMessage({
+                $event: {
+                    text: "TEXT",
+                    code: "CODE"
+                }
+            });
         }
 
-        replaceTheMessage () {
-            this.$ngRedux.dispatch(replaceTheMessage({
-                text: "TEXT",
-                code: "CODE"
-            }));
-        }
-
-        addInfoProducer() {
-            this.$ngRedux.dispatch(addInfoProducer("a new producer"));
+        callAddInfoProducer() {
+            this.addInfoProducer({
+                $event: "a new producer"
+            });
         }
     }
 };
