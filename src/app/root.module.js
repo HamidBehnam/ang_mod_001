@@ -6,6 +6,7 @@ import '../less/style.less';
 import angular from 'angular';
 import ngRedux from "ng-redux";
 import ReduxThunk from "redux-thunk"
+import ngReduxUiRouter from "redux-ui-router"
 import rootReducer from "./root.reducer";
 import RootComponent from './root.component.js'
 import InfoModule from "./info/info.module"
@@ -14,6 +15,7 @@ import SharedModule from "./shared/shared.module.js"
 
 const RootModule = angular.module('root', [
     ngRedux,
+    ngReduxUiRouter,
     InfoModule.name,
     SummaryModule.name,
     SharedModule.name
@@ -28,13 +30,13 @@ if (process.env.DEBUG_REDUX === "on") {
 
     RootModule.config(/* @ngInject */ ($locationProvider, $ngReduxProvider) => {
         $locationProvider.html5Mode(true);
-        $ngReduxProvider.createStoreWith(rootReducer, [ReduxThunk, createLogger()], [DevTools.instrument()]);
+        $ngReduxProvider.createStoreWith(rootReducer, ["ngUiRouterMiddleware", ReduxThunk, createLogger()], [DevTools.instrument()]);
     })
         .run(runDevTools);
 } else {
     RootModule.config(/* @ngInject */ ($locationProvider, $ngReduxProvider) => {
         $locationProvider.html5Mode(true);
-        $ngReduxProvider.createStoreWith(rootReducer, [ReduxThunk]);
+        $ngReduxProvider.createStoreWith(rootReducer, ["ngUiRouterMiddleware", ReduxThunk]);
     });
 }
 
