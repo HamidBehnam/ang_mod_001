@@ -11,7 +11,7 @@ import {
 
 const initialState = {
     isLoading: false,
-    infoTitle: "the info title",
+    infoTitle: "awesome info title",
     infoMessage: {
         text: "default text",
         code: "default code"

@@ -2,3 +2,5 @@ node_modules
 .idea
 ang_mod_001.iml
 dist
+.firebaserc
+firebase.json

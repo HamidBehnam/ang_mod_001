@@ -26,12 +26,6 @@ const InfoComponent = {
             this.$ngRedux = $ngRedux;
             this.ApiService = ApiService;
             this.unsubscribe = this.$ngRedux.connect(this.mapState, {})(this);
-            const infoMessage = {
-                text: "My message text.",
-                code: "My message code."
-            };
-
-            this.infoMessage = infoMessage;
         }
 
         $onInit() {
