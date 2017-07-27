@@ -3,23 +3,28 @@ import {
     addNameToTitle,
     addNumberToTitle,
     replaceTheMessage,
-    addInfoProducer
+    addInfoProducer,
+    loadInfoVerifiersAsync
 } from "../shared/redux/info.actions";
 import {
     getInfoState,
     getInfoTitle,
     getInfoTitleLength,
     getInfoMessage,
-    getInfoProducers
-} from "../shared/redux/info.selectors"
+    getInfoProducers,
+    getInfoVerifiers,
+    getLoadingStatus
+} from "../shared/redux/info.selectors";
 
 const InfoComponent = {
     template: template,
     bindings: {},
     controller: class InfoController {
         /*@ngInject*/
-        constructor($ngRedux) {
+        constructor($timeout, $ngRedux, ApiService) {
+            this.$timeout = $timeout;
             this.$ngRedux = $ngRedux;
+            this.ApiService = ApiService;
             this.unsubscribe = this.$ngRedux.connect(this.mapState, {})(this);
             const infoMessage = {
                 text: "My message text.",
@@ -27,6 +32,15 @@ const InfoComponent = {
             };
 
             this.infoMessage = infoMessage;
+        }
+
+        $onInit() {
+            this.replaceTheMessage({
+                text: "Hamid",
+                code: "Behnam"
+            });
+
+            this.loadInfoVerifiers();
         }
 
         $onDestroy() {
@@ -39,7 +53,9 @@ const InfoComponent = {
                 infoTitle: getInfoTitle(state),
                 infoTitleLength: getInfoTitleLength(state),
                 infoMessage: getInfoMessage(state),
-                infoProducers: getInfoProducers(state)
+                infoProducers: getInfoProducers(state),
+                infoVerifiers: getInfoVerifiers(state),
+                isLoading: getLoadingStatus(state)
             };
         }
 
@@ -57,6 +73,10 @@ const InfoComponent = {
 
         addInfoProducer(producer) {
             this.$ngRedux.dispatch(addInfoProducer(producer));
+        }
+
+        loadInfoVerifiers() {
+            this.$ngRedux.dispatch(loadInfoVerifiersAsync(this.ApiService));
         }
 
         acceptTheMessage($event) {

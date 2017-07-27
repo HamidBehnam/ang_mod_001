@@ -5,6 +5,7 @@
 import '../less/style.less';
 import angular from 'angular';
 import ngRedux from "ng-redux";
+import ReduxThunk from "redux-thunk"
 import rootReducer from "./root.reducer";
 import RootComponent from './root.component.js'
 import InfoModule from "./info/info.module"
@@ -27,13 +28,13 @@ if (process.env.DEBUG_REDUX === "on") {
 
     RootModule.config(/* @ngInject */ ($locationProvider, $ngReduxProvider) => {
         $locationProvider.html5Mode(true);
-        $ngReduxProvider.createStoreWith(rootReducer, [createLogger()], [DevTools.instrument()]);
+        $ngReduxProvider.createStoreWith(rootReducer, [ReduxThunk, createLogger()], [DevTools.instrument()]);
     })
         .run(runDevTools);
 } else {
     RootModule.config(/* @ngInject */ ($locationProvider, $ngReduxProvider) => {
         $locationProvider.html5Mode(true);
-        $ngReduxProvider.createStoreWith(rootReducer, []);
+        $ngReduxProvider.createStoreWith(rootReducer, [ReduxThunk]);
     });
 }
 

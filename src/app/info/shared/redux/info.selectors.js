@@ -22,3 +22,13 @@ export const getInfoProducers = createSelector(
     (infoState) => infoState.infoProducers
 );
 
+export const getInfoVerifiers = createSelector(
+    getInfoState,
+    (infoState) => infoState.infoVerifiers
+);
+
+export const getLoadingStatus = createSelector(
+    getInfoState,
+    (infoStatus) => infoStatus.isLoading
+);
+

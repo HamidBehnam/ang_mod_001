@@ -4,16 +4,20 @@ import {
     addNameToTitleType,
     addNumberToTitleType,
     replaceTheMessageType,
-    addInfoProducerType
+    addInfoProducerType,
+    loadInfoVerifiersType,
+    isLoadingType
 } from "./info.actions";
 
 const initialState = {
+    isLoading: false,
     infoTitle: "the info title",
     infoMessage: {
         text: "default text",
         code: "default code"
     },
-    infoProducers: ["Hamid", "John", "Smith"]
+    infoProducers: ["Hamid", "John", "Smith"],
+    infoVerifiers: []
 };
 
 const infoReducer = function (state = initialState, {type: actionType, payload}) {
@@ -33,6 +37,15 @@ const infoReducer = function (state = initialState, {type: actionType, payload})
         case addInfoProducerType:
             return Object.assign({}, state, {
                 infoProducers: [...state.infoProducers, payload.producer]
+            });
+        case loadInfoVerifiersType:
+            return Object.assign({}, state, {
+                infoVerifiers: payload.infoVerifiers,
+                isLoading: false
+            });
+        case isLoadingType:
+            return Object.assign({}, state, {
+                isLoading: payload.isLoading
             });
         default:
             return state;

@@ -18,6 +18,11 @@
     <span>Info title length: </span>
     <span>{{$ctrl.infoTitleLength}}</span>
 </div>
+<div>
+    <span>Is loading in progress: </span>
+    <span>{{$ctrl.isLoading}}</span>
+</div>
+<div ng-repeat="infoVerifier in $ctrl.infoVerifiers">{{infoVerifier}}</div>
 <button ng-click="$ctrl.callAddNameToTitle()">Add Name To Title</button>
 <button ng-click="$ctrl.callAddNumberToTitle()">Add Number To Title</button>
 <button ng-click="$ctrl.callReplaceTheMessage()">Replace Info Message</button>
@@ -25,3 +30,4 @@
 <pre>
     {{$ctrl.info | json}}
 </pre>
+
