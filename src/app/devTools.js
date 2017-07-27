@@ -1,16 +1,23 @@
 // via https://github.com/angular-redux/ng-redux/blob/master/examples/counter/devTools.js#L1-L33
 import { createDevTools } from 'redux-devtools';
 import { render } from 'react-dom';
-import LogMonitor from 'redux-devtools-log-monitor';
 import DockMonitor from 'redux-devtools-dock-monitor';
+import LogMonitor from 'redux-devtools-log-monitor';
+import SliderMonitor from 'redux-slider-monitor';
+import ChartMonitor from 'redux-devtools-chart-monitor';
+import DiffMonitor from 'redux-devtools-diff-monitor';
 import React from 'react'
 import { Provider } from 'react-redux';
 
 const DevTools = createDevTools(
-  <DockMonitor toggleVisibilityKey='ctrl-h'
-               changePositionKey='ctrl-q'>
-    <LogMonitor theme='tomorrow' />
-  </DockMonitor>
+    <DockMonitor toggleVisibilityKey='ctrl-h'
+                 changePositionKey='ctrl-q'
+                 changeMonitorKey='ctrl-m'>
+        <LogMonitor />
+        <SliderMonitor />
+        <ChartMonitor />
+        <DiffMonitor theme='tomorrow' />
+    </DockMonitor>
 );
 
 export /*@ngInject*/ function runDevTools($ngRedux, $rootScope) {
