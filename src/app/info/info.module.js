@@ -1,7 +1,7 @@
 import uiRouter from "@uirouter/angularjs"
 import ngResource from "angular-resource"
-import InfoComponent from "./info/info.component.js"
-import QuickInfoComponent from "./quick-info/quick-info.component.js"
+import infoComponent from "./info/info.component.js"
+import quickInfoComponent from "./quick-info/quick-info.component.js"
 import ApiService from "./shared/utils/api.service"
 import InfoActionsService from "./shared/redux/info.actions";
 
@@ -15,8 +15,8 @@ const InfoModule = angular.module("info", [
             component: "info"
         });
     })
-    .component("info", InfoComponent)
-    .component("quickInfo", QuickInfoComponent)
+    .component("info", infoComponent)
+    .component("quickInfo", quickInfoComponent)
     .service("ApiService", ApiService)
     .factory("InfoActionsService", InfoActionsService);
 

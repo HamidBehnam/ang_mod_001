@@ -1,7 +1,7 @@
 import template from "./summary.component.html"
 import {getSummaryCode} from "../shared/redux/summary.selectors"
 
-const SummaryComponent = {
+const summaryComponent = {
     template: template,
     bindings: {},
     controller: class SummaryController {
@@ -27,4 +27,4 @@ const SummaryComponent = {
     }
 };
 
-export default SummaryComponent;
+export default summaryComponent;

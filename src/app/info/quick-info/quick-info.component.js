@@ -1,6 +1,6 @@
 import template from "./quick-info.component.html"
 
-const QuickInfoComponent = {
+const quickInfoComponent = {
     bindings: {
         info: "<",
         infoTitle: "<",
@@ -66,4 +66,4 @@ const QuickInfoComponent = {
     }
 };
 
-export default QuickInfoComponent;
+export default quickInfoComponent;

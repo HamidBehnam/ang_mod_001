@@ -10,7 +10,7 @@ import {
     getLoadingStatus
 } from "../shared/redux/info.selectors";
 
-const InfoComponent = {
+const infoComponent = {
     template: template,
     bindings: {},
     controller: class InfoController {
@@ -66,4 +66,4 @@ const InfoComponent = {
     }
 };
 
-export default InfoComponent;
+export default infoComponent;

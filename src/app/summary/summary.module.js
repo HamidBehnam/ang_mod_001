@@ -1,6 +1,6 @@
 import angular from "angular"
 import uiRouter from "@uirouter/angularjs"
-import SummaryComponent from "./summary/summary.component.js"
+import summaryComponent from "./summary/summary.component.js"
 
 const SummaryModule = angular.module("summary", [
     uiRouter
@@ -11,6 +11,6 @@ const SummaryModule = angular.module("summary", [
             component: "summary"
         });
     })
-    .component("summary", SummaryComponent);
+    .component("summary", summaryComponent);
 
 export default SummaryModule;
