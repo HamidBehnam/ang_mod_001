@@ -9,7 +9,10 @@ const SummaryComponent = {
         constructor(AuthorService, $ngRedux) {
             this.AuthorService = AuthorService;
             this.$ngRedux = $ngRedux;
-            this.unsubscribe = $ngRedux.connect(this.mapState, {})(this);
+        }
+
+        $onInit() {
+            this.unsubscribe = this.$ngRedux.connect(this.mapState, {})(this); // you can even map the actions, in this case the dispatch callers will be generated for you! https://egghead.io/lessons/angular-1-x-angular-1-x-redux-map-state-and-dispatchers-to-redux
         }
 
         $onDestroy() {

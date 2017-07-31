@@ -8,7 +8,7 @@ const QuickInfoComponent = {
         infoMessage: "<",
         infoProducers: "<",
         infoVerifiers: "<",
-        isLoading: "<",
+        isContentLoading: "<",
         addNameToTitle: "&",
         addNumberToTitle: "&",
         replaceTheMessage: "&",

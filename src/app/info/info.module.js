@@ -2,7 +2,8 @@ import uiRouter from "@uirouter/angularjs"
 import ngResource from "angular-resource"
 import InfoComponent from "./info/info.component.js"
 import QuickInfoComponent from "./quick-info/quick-info.component.js"
-import ApiService from "./shared/services/api.service"
+import ApiService from "./shared/utils/api.service"
+import InfoActionsService from "./shared/redux/info.actions";
 
 const InfoModule = angular.module("info", [
     uiRouter,
@@ -16,6 +17,7 @@ const InfoModule = angular.module("info", [
     })
     .component("info", InfoComponent)
     .component("quickInfo", QuickInfoComponent)
-    .service("ApiService", ApiService);
+    .service("ApiService", ApiService)
+    .factory("InfoActionsService", InfoActionsService);
 
 export default InfoModule;

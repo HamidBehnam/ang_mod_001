@@ -7,48 +7,64 @@ export const addInfoProducerType = "addInfoProducerType";
 export const loadInfoVerifiersType = "loadInfoVerifiersType";
 export const isLoadingType = "isLoadingType";
 
-export const addNameToTitle = () => ({
-    type: addNameToTitleType
-});
+export const InfoActionsService = (ApiService) => { // the reason for creating a factory service and not a service service is because this service is gonna be used in $ngRedux.connect() method and that method accepts a pure object which is the output of the factory service and not a service service.
+    `ngInject`;
 
-export const addNumberToTitle = () => ({
-    type: addNumberToTitleType
-});
+    const addNameToTitle = () => ({
+        type: addNameToTitleType
+    });
 
-export const replaceTheMessage = (message) => ({
-    type: replaceTheMessageType,
-    payload: {
-        message
-    }
-});
+    const addNumberToTitle = () => ({
+        type: addNumberToTitleType
+    });
 
-export const addInfoProducer = (producer) => ({
-    type: addInfoProducerType,
-    payload: {
-        producer
-    }
-});
+    const replaceTheMessage = (message) => ({
+        type: replaceTheMessageType,
+        payload: {
+            message
+        }
+    });
 
-export const loadInfoVerifiers = (infoVerifiers) => ({
-    type: loadInfoVerifiersType,
-    payload: {
-        infoVerifiers
-    }
-});
+    const addInfoProducer = (producer) => ({
+        type: addInfoProducerType,
+        payload: {
+            producer
+        }
+    });
 
-export const isLoading = (isLoading) => ({
-    type: isLoadingType,
-    payload: {
-        isLoading
-    }
-});
+    const loadInfoVerifiers = (infoVerifiers) => ({
+        type: loadInfoVerifiersType,
+        payload: {
+            infoVerifiers
+        }
+    });
 
-export const loadInfoVerifiersAsync = (ApiService) => (dispatch) => {
-    dispatch(isLoading(true));
-    ApiService.queryInfoVerifiers(
-        {},
-        data => dispatch(loadInfoVerifiers(data)),
-        error => console.log("error, ", error)
-    );
+    const isLoading = (isLoading) => ({
+        type: isLoadingType,
+        payload: {
+            isLoading
+        }
+    });
+
+    const loadInfoVerifiersAsync = () => (dispatch) => {
+        dispatch(isLoading(true));
+        ApiService.queryInfoVerifiers(
+            {},
+            data => dispatch(loadInfoVerifiers(data)),
+            error => console.log("error, ", error)
+        );
+    };
+
+    return {
+        addNameToTitle,
+        addNumberToTitle,
+        replaceTheMessage,
+        addInfoProducer,
+        loadInfoVerifiers,
+        isLoading,
+        loadInfoVerifiersAsync
+    };
 };
+
+export default InfoActionsService;
 

@@ -23,7 +23,7 @@ const initialState = {
 const infoReducer = function (state = initialState, {type: actionType, payload}) {
     switch (actionType) {
         case addNameToTitleType:
-            return Object.assign({}, state, {
+            return Object.assign({}, state, { // you can use Object.freeze to make sure (test) that you're not modifying the state: https://egghead.io/lessons/angular-1-x-angular-1-x-redux-avoid-state-mutation-with-immutable-operations
                 infoTitle: state.infoTitle + " " + "hamid"
             });
         case addNumberToTitleType:
