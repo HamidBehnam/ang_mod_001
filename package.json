@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server",
-    "prod": "export NODE_ENV=prod DEBUG_REDUX=off && webpack --progress",
+    "prod": "export NODE_ENV=production DEBUG_REDUX=off && webpack --progress",
     "rc": "export NODE_ENV=rc DEBUG_REDUX=off && webpack --progress",
     "dev": "export DEBUG_REDUX=off && webpack --progress",
     "dev:d": "webpack --progress",
